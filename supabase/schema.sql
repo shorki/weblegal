@@ -4,17 +4,23 @@
 -- ─────────────────────────────────────────────────────────────
 
 create table if not exists public.consultas (
-  id          uuid primary key default gen_random_uuid(),
-  created_at  timestamptz not null default now(),
-  nombre      text not null,
-  email       text not null,
-  telefono    text,
-  area        text,
-  mensaje     text not null,
-  estado      text not null default 'nueva',  -- 'nueva' | 'respondida'
-  ip          text,
-  user_agent  text
+  id            uuid primary key default gen_random_uuid(),
+  created_at    timestamptz not null default now(),
+  nombre        text not null,
+  email         text not null,
+  telefono      text,
+  area          text,
+  mensaje       text not null,
+  estado        text not null default 'nueva',  -- 'nueva' | 'respondida'
+  respuesta     text,                            -- respuesta escrita desde /admin
+  respondida_at timestamptz,                     -- cuándo se guardó la respuesta
+  ip            text,
+  user_agent    text
 );
+
+-- Si la tabla ya existía, agregamos las columnas nuevas (idempotente):
+alter table public.consultas add column if not exists respuesta text;
+alter table public.consultas add column if not exists respondida_at timestamptz;
 
 create index if not exists consultas_created_at_idx
   on public.consultas (created_at desc);

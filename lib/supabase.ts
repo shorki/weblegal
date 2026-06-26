@@ -34,4 +34,6 @@ export type Consulta = {
   area: string | null;
   mensaje: string;
   estado: "nueva" | "respondida";
+  respuesta: string | null;
+  respondida_at: string | null;
 };

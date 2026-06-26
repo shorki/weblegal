@@ -102,12 +102,21 @@ Cada `git push` a la rama principal vuelve a desplegar.
 
 - Entrá a `/admin`, ingresá `ADMIN_PASSWORD`.
 - Ves todas las consultas (más nuevas primero), con email/teléfono clickeables.
-- Botón **"Marcar respondida"** para llevar el control de cuáles ya atendiste.
+- En cada consulta hay una caja **"Respuesta del estudio"**: escribís la respuesta y
+  **"Guardar respuesta"**. Queda guardada en la base, la consulta pasa a **Respondida**
+  y se registra la fecha. Podés editar la respuesta cuando quieras, o **"Reabrir"** la consulta.
+
+> Por ahora la respuesta se gestiona desde el panel (no se envía sola al cliente por email).
+> El envío automático de la respuesta / del aviso por correo queda como mejora futura
+> (la base ya guarda `respuesta` y `respondida_at`).
 
 ---
 
 ## Pendientes / a definir con el cliente
 
+- **Email de la consulta:** la idea es que cada consulta llegue por correo a las abogadas.
+  El aviso por email ya está preparado (Resend, opcional); falta configurar las claves
+  (`RESEND_API_KEY`, `NOTIFY_EMAIL_TO`). Por ahora la consulta se guarda y se responde desde `/admin`.
 - **Email de contacto real:** hoy figura el de ejemplo `consultas@estudio.com.uy` (en la web y en el `mailto:`). Falta el definitivo.
 - **Página de privacidad:** los links "política de privacidad" apuntan por ahora a la sección de contacto. Falta el texto legal real (Ley 18.331).
 - **Logo / redes / fotos:** no se incluyeron (no venían en el contenido).

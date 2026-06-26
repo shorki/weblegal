@@ -17,7 +17,9 @@ export default async function AdminPage() {
     const supabase = getSupabaseAdmin();
     const { data, error } = await supabase
       .from("consultas")
-      .select("id, created_at, nombre, email, telefono, area, mensaje, estado")
+      .select(
+        "id, created_at, nombre, email, telefono, area, mensaje, estado, respuesta, respondida_at"
+      )
       .order("created_at", { ascending: false })
       .limit(500);
     if (error) throw error;
